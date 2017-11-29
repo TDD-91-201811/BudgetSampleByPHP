@@ -4,7 +4,7 @@ php:
   - 7.0
   - 7.1
 
-script: phpunit --configuration phpunit_$DB.xml --coverage-text
+script: phpunit --configuration phpunit.xml --coverage-text
 
 notifications:
   notifications:

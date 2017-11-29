@@ -5,8 +5,14 @@ namespace Tests;
 use App\Utilities\Linker;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \App\Utilities\Linker
+ */
 class LinkerTest extends TestCase
 {
+    /**
+     * @covers \App\Utilities\Linker::autolink()
+     */
     public function testAutoLink()
     {
         // arrange

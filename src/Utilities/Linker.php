@@ -12,6 +12,8 @@ class Linker
     {
         $text = strip_tags($text);
 
+        // trigger build
+
         return preg_replace(
             '@(https?://([-\w\.]+[-\w])+(:\d+)?(/([\w/_\.#-~]*(\?\S+)?)?)?)@',
             '<a href="$1">$1</a>',

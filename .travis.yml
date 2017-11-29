@@ -1,0 +1,13 @@
+language: php
+
+php:
+  - 7.0
+  - 7.1
+
+script: phpunit --configuration phpunit_$DB.xml --coverage-text
+
+notifications:
+  notifications:
+    email:
+      on_success: always
+      on_failure: always

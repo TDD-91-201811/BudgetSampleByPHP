@@ -5,8 +5,14 @@ namespace Tests;
 use App\HelloWord;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \App\HelloWord
+ */
 class HelloWorldTest extends TestCase
 {
+    /**
+     * @covers \App\HelloWord::say()
+     */
     public function testSayHelloWorld()
     {
         // arrange

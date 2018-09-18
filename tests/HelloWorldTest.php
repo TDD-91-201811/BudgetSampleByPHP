@@ -25,5 +25,4 @@ class HelloWorldTest extends TestCase
         // assert
         $this->assertEquals($excepted, $actual);
     }
-
 }

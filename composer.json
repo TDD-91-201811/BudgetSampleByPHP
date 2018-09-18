@@ -23,5 +23,9 @@
         "psr-4": {
             "App\\": "tests/"
         }
+    },
+    "config": {
+        "disable-tls": true,
+        "secure-http": false
     }
 }

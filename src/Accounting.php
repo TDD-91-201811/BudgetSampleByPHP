@@ -29,6 +29,8 @@ class Accounting
             return 0;
         }
 
-        return $start->diff($end)->d + 1;
+        $period = new Period($start, $end);
+
+        return $period->days($start, $end);
     }
 }

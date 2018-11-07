@@ -12,8 +12,14 @@ use DateTime;
 
 class Accounting
 {
-    public function __construct()
+    /**
+     * @var IBudgetRepository
+     */
+    private $budgetRepository;
+
+    public function __construct(IBudgetRepository $budgetRepository)
     {
+        $this->budgetRepository = $budgetRepository;
     }
 
     public function totalAmount(DateTime $start, DateTime $end)

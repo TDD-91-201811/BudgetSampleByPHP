@@ -8,21 +8,41 @@
 
 namespace Tests;
 
+use App\Budget;
+use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
+use Tests\StubBudgetRepository;
 use App\Accounting;
+use App\IBudgetRepository;
 use PHPUnit\Framework\TestCase;
+use Mockery as m;
 
 class AccountingTest extends TestCase
 {
+    use MockeryPHPUnitIntegration;
+    /**
+     * @var Accounting
+     */
     private $accounting;
+    /**
+     * @var IBudgetRepository
+     */
+    private $stubRepository;
 
     protected function setUp()
     {
-        $this->accounting = new Accounting();
+        $this->stubRepository = m::mock(IBudgetRepository::class);
+        $this->accounting = new Accounting($this->stubRepository);
     }
 
     public function test_no_budgets()
     {
         $this->totalAmountShouldBe(0, new \DateTime('2010-04-01'), new \DateTime('2010-04-01'));
+    }
+
+    public function test_period_inside_budget_month()
+    {
+        $this->stubRepository->shouldReceive('getAll')->with()->andReturn(array(new Budget('201004', 30)));
+        $this->totalAmountShouldBe(1, new \DateTime('2010-04-01'), new \DateTime('2010-04-01'));
     }
 
     /**

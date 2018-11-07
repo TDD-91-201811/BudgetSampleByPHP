@@ -37,10 +37,11 @@ class Period
      */
     public function overlappingDays(Budget $budget): int
     {
-        if ($this->start > $budget->lastDay()) {
+        $another = new Period($budget->firstDay(), $budget->lastDay());
+        if ($this->start > $another->getEnd()) {
             return 0;
         }
-        if ($this->end < $budget->firstDay()) {
+        if ($this->end < $another->getStart()) {
             return 0;
         }
 

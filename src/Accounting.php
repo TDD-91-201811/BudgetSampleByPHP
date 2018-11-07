@@ -31,9 +31,12 @@ class Accounting
 
         $period = new Period($start, $end);
 
-        $budget = $this->getFirstBudget($budgets);
+        $totalAmount = 0;
+        foreach ($budgets as $budget) {
+            $totalAmount += $budget->overlappingAmount($period);
+        }
 
-        return $budget->overlappingAmount($period);
+        return $totalAmount;
     }
 
     /**

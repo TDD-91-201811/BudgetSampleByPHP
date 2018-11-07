@@ -81,6 +81,14 @@ class AccountingTest extends TestCase
         $this->totalAmountShouldBe(30, new \DateTime('2010-04-01'), new \DateTime('2010-04-03'));
     }
 
+    public function test_multiple_budgets()
+    {
+        $this->givenBudgets(array(
+            new Budget('201004', 300),
+            new Budget('201005', 31)));
+        $this->totalAmountShouldBe(13, new \DateTime('2010-04-30'), new \DateTime('2010-05-03'));
+    }
+
     /**
      * @param $expected
      * @param $start

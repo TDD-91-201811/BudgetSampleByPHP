@@ -8,6 +8,8 @@
 
 namespace App;
 
+use DateTime;
+
 class Budget
 {
     /**
@@ -42,10 +44,17 @@ class Budget
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function firstDay()
     {
-        return new \DateTime($this->yearMonth . '01');
+        return new DateTime($this->yearMonth . '01');
+    }
+
+    public function lastDay()
+    {
+        $daysInMonth = cal_days_in_month(CAL_GREGORIAN, $this->firstDay()->format('m'), $this->firstDay()->format('y'));
+
+        return new DateTime($this->yearMonth . $daysInMonth);
     }
 }

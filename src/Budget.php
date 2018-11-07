@@ -28,6 +28,14 @@ class Budget
     }
 
     /**
+     * @return Period
+     */
+    public function CreatePeriod(): Period
+    {
+        return new Period($this->firstDay(), $this->lastDay());
+    }
+
+    /**
      * @return int
      */
     public function getAmount(): int

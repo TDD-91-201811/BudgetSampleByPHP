@@ -49,7 +49,12 @@ class Period
             $effectiveStart = $budget->firstDay();
         }
 
-        return $effectiveStart->diff($this->end)->d + 1;
+        $effectiveEnd = $this->end;
+        if ($budget->lastDay() < $this->end) {
+            $effectiveEnd = $budget->lastDay();
+        }
+
+        return $effectiveStart->diff($effectiveEnd)->d + 1;
     }
 
     /**

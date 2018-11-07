@@ -63,6 +63,12 @@ class AccountingTest extends TestCase
         $this->totalAmountShouldBe(1, new \DateTime('2010-03-31'), new \DateTime('2010-04-01'));
     }
 
+    public function test_period_overlap_budget_lastDay()
+    {
+        $this->givenBudgets(array(new Budget('201004', 30)));
+        $this->totalAmountShouldBe(1, new \DateTime('2010-04-30'), new \DateTime('2010-05-01'));
+    }
+
     /**
      * @param $expected
      * @param $start

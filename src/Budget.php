@@ -28,6 +28,14 @@ class Budget
     }
 
     /**
+     * @return float|int
+     */
+    public function dailyAmount()
+    {
+        return $this->getAmount() / $this->days();
+    }
+
+    /**
      * @return Period
      */
     public function CreatePeriod(): Period

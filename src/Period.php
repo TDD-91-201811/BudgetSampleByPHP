@@ -33,6 +33,9 @@ class Period
      */
     public function overlappingDays(Period $another): int
     {
+        if ($this->start > $this->end) {
+            return 0;
+        }
         if ($this->start > $another->getEnd()) {
             return 0;
         }

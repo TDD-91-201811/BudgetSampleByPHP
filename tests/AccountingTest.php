@@ -41,7 +41,7 @@ class AccountingTest extends TestCase
 
     public function test_period_inside_budget_month()
     {
-        $this->stubRepository->shouldReceive('getAll')->andReturn(array(new Budget('201004', 30)));
+        $this->givenBudgets(array(new Budget('201004', 30)));
         $this->totalAmountShouldBe(1, new \DateTime('2010-04-01'), new \DateTime('2010-04-01'));
     }
 
@@ -53,5 +53,13 @@ class AccountingTest extends TestCase
     private function totalAmountShouldBe($expected, $start, $end): void
     {
         $this->assertEquals($expected, $this->accounting->totalAmount($start, $end));
+    }
+
+    /**
+     * @param $budgets
+     */
+    private function givenBudgets($budgets): void
+    {
+        $this->stubRepository->shouldReceive('getAll')->andReturn($budgets);
     }
 }

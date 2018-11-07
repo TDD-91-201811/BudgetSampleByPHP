@@ -24,29 +24,12 @@ class Accounting
 
     public function totalAmount(DateTime $start, DateTime $end)
     {
-        $budgets = $this->budgetRepository->getAll();
-        if (count($budgets) == 0) {
-            return 0;
-        }
-
         $period = new Period($start, $end);
 
-        $totalAmount = 0;
-        foreach ($budgets as $budget) {
-            $totalAmount += $budget->overlappingAmount($period);
-        }
-
-        return $totalAmount;
-    }
-
-    /**
-     * @param $budgets
-     * @return Budget
-     */
-    public function getFirstBudget($budgets)
-    {
-        $budget = $budgets[0];
-
-        return $budget;
+        return collect($this->budgetRepository->getAll())
+            ->map(function (Budget $budget) use ($period) {
+                return $budget->overlappingAmount($period);
+            })
+            ->sum();
     }
 }

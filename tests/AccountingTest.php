@@ -13,10 +13,25 @@ use PHPUnit\Framework\TestCase;
 
 class AccountingTest extends TestCase
 {
+    private $accounting;
+
+    protected function setUp()
+    {
+        $this->accounting = new Accounting();
+    }
+
     public function test_no_budgets()
     {
-        $accounting = new Accounting();
-        $totalAmount = $accounting->totalAmount(new \DateTime('2010-04-01'), new \DateTime('2010-04-01'));
-        $this->assertEquals(0, $totalAmount);
+        $this->totalAmountShouldBe(0, new \DateTime('2010-04-01'), new \DateTime('2010-04-01'));
+    }
+
+    /**
+     * @param $expected
+     * @param $start
+     * @param $end
+     */
+    private function totalAmountShouldBe($expected, $start, $end): void
+    {
+        $this->assertEquals($expected, $this->accounting->totalAmount($start, $end));
     }
 }

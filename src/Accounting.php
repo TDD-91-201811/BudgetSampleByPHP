@@ -25,11 +25,10 @@ class Accounting
     public function totalAmount(DateTime $start, DateTime $end)
     {
         $budgets = $this->budgetRepository->getAll();
-        var_dump($budgets);
         if (count($budgets) == 0) {
             return 0;
         }
 
-        return 1;
+        return $start->diff($end)->d + 1;
     }
 }

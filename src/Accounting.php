@@ -31,6 +31,6 @@ class Accounting
 
         $period = new Period($start, $end);
 
-        return $period->days($start, $end);
+        return $period->days();
     }
 }

@@ -12,17 +12,26 @@ use DateTime;
 
 class Period
 {
+    /**
+     * @var DateTime
+     */
+    private $start;
+    /**
+     * @var DateTime
+     */
+    private $end;
+
     public function __construct(\DateTime $start, \DateTime $end)
     {
+        $this->start = $start;
+        $this->end = $end;
     }
 
     /**
-     * @param DateTime $start
-     * @param DateTime $end
      * @return int
      */
-    public function days(DateTime $start, DateTime $end): int
+    public function days(): int
     {
-        return $start->diff($end)->d + 1;
+        return $this->start->diff($this->end)->d + 1;
     }
 }

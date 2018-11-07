@@ -34,4 +34,20 @@ class Period
     {
         return $this->start->diff($this->end)->d + 1;
     }
+
+    /**
+     * @return DateTime
+     */
+    public function getEnd(): DateTime
+    {
+        return $this->end;
+    }
+
+    /**
+     * @return DateTime
+     */
+    public function getStart(): DateTime
+    {
+        return $this->start;
+    }
 }

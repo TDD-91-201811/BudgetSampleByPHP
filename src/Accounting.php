@@ -32,10 +32,10 @@ class Accounting
         $period = new Period($start, $end);
 
         $budget = $budgets[0];
-        if ($start > $budget->lastDay()) {
+        if ($period->getStart() > $budget->lastDay()) {
             return 0;
         }
-        if ($end < $budget->firstDay()) {
+        if ($period->getEnd() < $budget->firstDay()) {
             return 0;
         }
 

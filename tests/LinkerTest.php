@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests;
+namespace App;
 
 use App\Utilities\Linker;
 use PHPUnit\Framework\TestCase;

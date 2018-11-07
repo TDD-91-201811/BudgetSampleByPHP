@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests;
+namespace App;
 
 use App\HelloWord;
 use PHPUnit\Framework\TestCase;

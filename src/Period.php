@@ -36,6 +36,22 @@ class Period
     }
 
     /**
+     * @param $budget
+     * @return int
+     */
+    public function overlappingDays($budget): int
+    {
+        if ($this->start > $budget->lastDay()) {
+            return 0;
+        }
+        if ($this->end < $budget->firstDay()) {
+            return 0;
+        }
+
+        return $this->days();
+    }
+
+    /**
      * @return DateTime
      */
     public function getEnd(): DateTime

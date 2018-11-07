@@ -37,15 +37,13 @@ class Period
             return 0;
         }
 
-        $effectiveStart = $this->start;
-        if ($another->getStart() > $this->start) {
-            $effectiveStart = $another->getStart();
-        }
+        $effectiveStart = $another->getStart() > $this->start
+            ? $another->getStart()
+            : $this->start;
 
-        $effectiveEnd = $this->end;
-        if ($another->getEnd() < $this->end) {
-            $effectiveEnd = $another->getEnd();
-        }
+        $effectiveEnd = $another->getEnd() < $this->end
+            ? $another->getEnd()
+            : $this->end;
 
         return $effectiveStart->diff($effectiveEnd)->d + 1;
     }

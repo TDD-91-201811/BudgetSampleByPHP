@@ -65,4 +65,9 @@ class Budget
 
         return new DateTime($this->yearMonth . $daysInMonth);
     }
+
+    public function days()
+    {
+        return $this->lastDay()->format('d');
+    }
 }

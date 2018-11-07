@@ -31,8 +31,22 @@ class Accounting
 
         $period = new Period($start, $end);
 
+        $budget = $this->getFirstBudget($budgets);
+        $dailyAmount = $budget->getAmount() / $budget->days();
+
+        $overlappingDays = $period->overlappingDays($budget->createPeriod());
+
+        return $dailyAmount * $overlappingDays;
+    }
+
+    /**
+     * @param $budgets
+     * @return Budget
+     */
+    public function getFirstBudget($budgets)
+    {
         $budget = $budgets[0];
 
-        return $period->overlappingDays($budget->createPeriod());
+        return $budget;
     }
 }

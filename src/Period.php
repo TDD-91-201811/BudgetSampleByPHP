@@ -33,13 +33,7 @@ class Period
      */
     public function overlappingDays(Period $another): int
     {
-        if ($this->start > $this->end) {
-            return 0;
-        }
-        if ($this->start > $another->getEnd()) {
-            return 0;
-        }
-        if ($this->end < $another->getStart()) {
+        if ($this->isInvalid() || $this->hasNoOverlap($another)) {
             return 0;
         }
 
@@ -70,5 +64,22 @@ class Period
     public function getStart(): DateTime
     {
         return $this->start;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isInvalid(): bool
+    {
+        return $this->start > $this->end;
+    }
+
+    /**
+     * @param Period $another
+     * @return bool
+     */
+    public function hasNoOverlap(Period $another): bool
+    {
+        return $this->start > $another->getEnd() || $this->end < $another->getStart();
     }
 }

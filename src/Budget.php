@@ -28,6 +28,15 @@ class Budget
     }
 
     /**
+     * @param $period
+     * @return float|int
+     */
+    public function overlappingAmount($period)
+    {
+        return $this->dailyAmount() * $period->overlappingDays($this->createPeriod());
+    }
+
+    /**
      * @return float|int
      */
     public function dailyAmount()

@@ -33,7 +33,7 @@ class Accounting
 
         $budget = $this->getFirstBudget($budgets);
 
-        return $budget->dailyAmount() * $period->overlappingDays($budget->createPeriod());
+        return $budget->overlappingAmount($period);
     }
 
     /**

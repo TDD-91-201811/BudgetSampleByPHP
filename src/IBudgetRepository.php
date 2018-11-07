@@ -11,7 +11,7 @@ namespace App;
 interface IBudgetRepository
 {
     /**
-     * @return mixed
+     * @return array<Budget>
      */
     public function getAll();
 }

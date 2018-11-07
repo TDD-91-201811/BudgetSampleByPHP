@@ -39,7 +39,7 @@ class Budget
     /**
      * @return float|int
      */
-    public function dailyAmount()
+    private function dailyAmount()
     {
         return $this->getAmount() / $this->days();
     }
@@ -47,7 +47,7 @@ class Budget
     /**
      * @return Period
      */
-    public function CreatePeriod(): Period
+    private function CreatePeriod(): Period
     {
         return new Period($this->firstDay(), $this->lastDay());
     }
@@ -55,35 +55,27 @@ class Budget
     /**
      * @return int
      */
-    public function getAmount(): int
+    private function getAmount(): int
     {
         return $this->amount;
     }
 
     /**
-     * @return string
-     */
-    public function getYearMonth(): string
-    {
-        return $this->yearMonth;
-    }
-
-    /**
      * @return DateTime
      */
-    public function firstDay()
+    private function firstDay()
     {
         return new DateTime($this->yearMonth . '01');
     }
 
-    public function lastDay()
+    private function lastDay()
     {
         $daysInMonth = cal_days_in_month(CAL_GREGORIAN, $this->firstDay()->format('m'), $this->firstDay()->format('y'));
 
         return new DateTime($this->yearMonth . $daysInMonth);
     }
 
-    public function days()
+    private function days()
     {
         return $this->lastDay()->format('d');
     }

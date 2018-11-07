@@ -51,7 +51,7 @@ class Period
     /**
      * @return DateTime
      */
-    public function getEnd(): DateTime
+    private function getEnd(): DateTime
     {
         return $this->end;
     }
@@ -59,7 +59,7 @@ class Period
     /**
      * @return DateTime
      */
-    public function getStart(): DateTime
+    private function getStart(): DateTime
     {
         return $this->start;
     }
@@ -67,7 +67,7 @@ class Period
     /**
      * @return bool
      */
-    public function isInvalid(): bool
+    private function isInvalid(): bool
     {
         return $this->start > $this->end;
     }
@@ -76,7 +76,7 @@ class Period
      * @param Period $another
      * @return bool
      */
-    public function hasNoOverlap(Period $another): bool
+    private function hasNoOverlap(Period $another): bool
     {
         return $this->start > $another->getEnd() || $this->end < $another->getStart();
     }

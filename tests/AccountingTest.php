@@ -75,6 +75,12 @@ class AccountingTest extends TestCase
         $this->totalAmountShouldBe(0, new \DateTime('2010-04-30'), new \DateTime('2010-04-01'));
     }
 
+    public function test_daily_amount_is_10()
+    {
+        $this->givenBudgets(array(new Budget('201004', 300)));
+        $this->totalAmountShouldBe(30, new \DateTime('2010-04-01'), new \DateTime('2010-04-03'));
+    }
+
     /**
      * @param $expected
      * @param $start

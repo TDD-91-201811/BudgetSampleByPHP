@@ -30,7 +30,7 @@ class AccountingTest extends TestCase
 
     protected function setUp()
     {
-        $this->stubRepository = m::mock(IBudgetRepository::class);
+        $this->stubRepository = m::spy(IBudgetRepository::class);
         $this->accounting = new Accounting($this->stubRepository);
     }
 
@@ -41,7 +41,7 @@ class AccountingTest extends TestCase
 
     public function test_period_inside_budget_month()
     {
-        $this->stubRepository->shouldReceive('getAll')->with()->andReturn(array(new Budget('201004', 30)));
+        $this->stubRepository->shouldReceive('getAll')->andReturn(array(new Budget('201004', 30)));
         $this->totalAmountShouldBe(1, new \DateTime('2010-04-01'), new \DateTime('2010-04-01'));
     }
 

@@ -10,4 +10,8 @@ namespace App;
 
 interface IBudgetRepository
 {
+    /**
+     * @return mixed
+     */
+    public function getAll();
 }

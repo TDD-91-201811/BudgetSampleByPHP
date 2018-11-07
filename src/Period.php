@@ -28,16 +28,11 @@ class Period
     }
 
     /**
+     * @param Period $another
      * @return int
      */
-
-    /**
-     * @param $budget
-     * @return int
-     */
-    public function overlappingDays(Budget $budget): int
+    public function overlappingDays(Period $another): int
     {
-        $another = new Period($budget->firstDay(), $budget->lastDay());
         if ($this->start > $another->getEnd()) {
             return 0;
         }
@@ -46,13 +41,13 @@ class Period
         }
 
         $effectiveStart = $this->start;
-        if ($budget->firstDay() > $this->start) {
-            $effectiveStart = $budget->firstDay();
+        if ($another->getStart() > $this->start) {
+            $effectiveStart = $another->getStart();
         }
 
         $effectiveEnd = $this->end;
-        if ($budget->lastDay() < $this->end) {
-            $effectiveEnd = $budget->lastDay();
+        if ($another->getEnd() < $this->end) {
+            $effectiveEnd = $another->getEnd();
         }
 
         return $effectiveStart->diff($effectiveEnd)->d + 1;
